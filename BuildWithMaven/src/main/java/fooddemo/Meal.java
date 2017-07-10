@@ -39,6 +39,19 @@ public class Meal {
 		this.veg = veg;
 	}
 	
+	public Meal () {
+		
+	}
+	
+	public Meal (Fruit f, Dairy d, Grain g, Meat m, Vegetable v) {
+		
+		this.fruit = f;
+		this.dairy = d;
+		this.grain = g;
+		this.meat = m;
+		this.veg = v;
+	}
+	
 	public String whatsInThisMeal () {
 		
 		String answer = "This meal contains: ";

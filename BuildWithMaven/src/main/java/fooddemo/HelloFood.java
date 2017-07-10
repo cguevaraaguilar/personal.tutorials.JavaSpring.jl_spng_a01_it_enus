@@ -23,6 +23,7 @@ public class HelloFood {
 		
 		Meal myNormalMeal = new Meal ();
 		Meal mySpringMeal = appContext.getBean("meal", Meal.class);
+		Meal myNewSpringMeal = appContext.getBean("newMealConstructor", Meal.class);
 		
 		((FileSystemXmlApplicationContext) appContext).close();
 		
@@ -38,6 +39,8 @@ public class HelloFood {
 		
 		System.out.println("Normal meal: " + myNormalMeal.whatsInThisMeal());
 		System.out.println("Spring meal: " + mySpringMeal.whatsInThisMeal());
+		System.out.println("New Spring meal: " + myNewSpringMeal.whatsInThisMeal());
+		
 	}
 
 }
