@@ -19,6 +19,11 @@ public class HelloFood {
 		Vegetable v = (Vegetable) appContext.getBean("vegetable");
 		Vegetable otherVegetable = (Vegetable) appContext.getBean("vegetableWithName");
 		
+		Vegetable vegUsingPNamespace = (Vegetable) appContext.getBean ("vegUsingPNamespace");
+		
+		Meal myNormalMeal = new Meal ();
+		Meal mySpringMeal = appContext.getBean("meal", Meal.class);
+		
 		((FileSystemXmlApplicationContext) appContext).close();
 		
 		System.out.println (f.talkAboutYourSelf());
@@ -28,6 +33,11 @@ public class HelloFood {
 		
 		System.out.println (v.talkAboutYourSelf());
 		System.out.println (otherVegetable.talkAboutYourSelf());
+		
+		System.out.println (vegUsingPNamespace.talkAboutYourSelf());
+		
+		System.out.println("Normal meal: " + myNormalMeal.whatsInThisMeal());
+		System.out.println("Spring meal: " + mySpringMeal.whatsInThisMeal());
 	}
 
 }

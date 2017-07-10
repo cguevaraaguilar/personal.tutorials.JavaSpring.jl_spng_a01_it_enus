@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="fruit" class="fooddemo.Fruit" />
@@ -30,6 +31,25 @@
 	
 	<bean id="vegetableWithName" class="fooddemo.Vegetable" >
 		<property name="myName" value="Brocolli" />
+	</bean>
+	
+	<bean id="vegUsingPNamespace" class="fooddemo.Vegetable" p:myName="Squash" />
+	
+	<bean id="dairy" class="fooddemo.Dairy">
+	</bean>
+	
+	<bean id="grain" class="fooddemo.Grain">
+	</bean>
+	
+	<bean id="meat" class="fooddemo.Meat">
+	</bean>
+	
+	<bean id="meal" class="fooddemo.Meal">
+		<property name="fruit" ref="fruit" />
+		<property name="dairy" ref="dairy" />
+		<property name="grain" ref="grain" />
+		<property name="meat" ref="meat" />
+		<property name="veg" ref="vegetable" />
 	</bean>
 
 </beans>
