@@ -51,5 +51,22 @@
 		<property name="meat" ref="meat" />
 		<property name="veg" ref="vegetable" />
 	</bean>
+	
+	<bean id="newMealConstructor" class="fooddemo.Meal">
+		<constructor-arg index="0" ref="fruit" />
+		<constructor-arg index="1" ref="dairy" />
+		<constructor-arg index="2" ref="grain" />
+		<constructor-arg index="3" ref="meat" />
+		<constructor-arg index="4" ref="vegetable" />
+	</bean>
+	
+	<bean id="newMealConstructorNamed" class="fooddemo.Meal">
+		<constructor-arg name="f" ref="fruit" />
+		<constructor-arg name="d" ref="dairy" />
+		<constructor-arg name="g" ref="grain" />
+		<constructor-arg name="m" ref="meat" />
+		<constructor-arg name="v" ref="vegetable" />
+	</bean>
 
 </beans>
+ 
