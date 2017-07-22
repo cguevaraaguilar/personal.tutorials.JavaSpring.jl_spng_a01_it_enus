@@ -7,6 +7,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+	<style>
+	
+		.error {
+			color:red;
+			font-size: 15px;
+		}
+	</style>
+
 <title>Create an Account</title>
 </head>
 <body>
@@ -16,11 +25,32 @@
 	
 		<table>
 		
-			<tr><td>First Name : <form:input path="firstName" type="text" name="firstName" /></td></tr>
-			<tr><td>Last Name : <form:input path="lastName" type="text" name="lastName" /></td></tr>
-			<tr><td>Address : <form:input path="address" type="text" name="address" /></td></tr>
-			<tr><td>Email : <form:input path="email" type="text" name="email" /></td></tr>
-			<tr><td><input type="submit" name="Crate" /></td></tr>
+			<tr><td>
+				First Name : <form:input path="firstName" type="text" name="firstName" />
+				<form:errors path="firstName" cssClass="error" />
+			</td></tr>
+			
+			<tr><td>
+				Last Name : <form:input path="lastName" type="text" name="lastName" />
+				<form:errors path="lastName" cssClass="error" />
+			</td></tr>
+			
+			<tr><td>
+				Age : <form:input path="age" type="text" name="age" />
+				<form:errors path="age" cssClass="error" />
+			</td></tr>
+			
+			<tr><td>
+				Address : <form:input path="address" type="text" name="address" />
+				<form:errors path="address" cssClass="error" />
+			</td></tr>
+			
+			<tr><td>
+				Email : <form:input path="email" type="text" name="email" />
+				<form:errors path="email" cssClass="error" />
+			</td></tr>
+			
+			<tr><td><input type="submit" name="Create" /></td></tr>
 		</table>
 	</form:form>	
 </body>

@@ -1,10 +1,21 @@
 package com.demo.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+
 public class Account {
 	
+	@NotNull @Size(min=5, max=10)
 	private String firstName;
+	@NotNull @Size(min=5, max=10)
 	private String lastName;
+	@NotNull
+	private int age;
+	@NotNull @Size(min=5, max=10)
 	private String address;
+	@NotNull @Email 
 	private String email;
 	
 	
@@ -31,6 +42,12 @@ public class Account {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 } // public class Account {
