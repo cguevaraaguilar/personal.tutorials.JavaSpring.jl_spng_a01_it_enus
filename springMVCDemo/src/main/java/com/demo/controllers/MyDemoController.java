@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.demo.model.Account;
 
@@ -49,14 +50,18 @@ public class MyDemoController {
 		
 		// model.addAllAttributes(attributeValues)
 		
-		return ("createAccount");
+		return ("accountCreated");
 	} // public String createAccount (@Valid @ModelAttribute ("aNewAccount") Account account, BindingResult result) {
 	
-	@RequestMapping (value="/accountCreated")
-	public String performCrate (Account account) {
+	@RequestMapping(value="/accountCreated", method=RequestMethod.POST)
+	public String performCreate (Account account) {
 		
 		System.out.println(account.getFirstName() + " " + account.getLastName() + " " + account.getAge() + " " + account.getAddress() + " " + account.getEmail());
 		
 		return ("accountCreated");
-	} // public String performCrate (Account account) {
+	} // public String performCreate (Account account) {
+	
+	
+	
+	 
 } // public class MyDemoController {
