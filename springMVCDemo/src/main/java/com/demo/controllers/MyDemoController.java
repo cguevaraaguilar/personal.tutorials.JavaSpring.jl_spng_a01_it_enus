@@ -1,5 +1,6 @@
 package com.demo.controllers;
 
+import java.io.FileOutputStream;
 import java.util.Random;
 
 import javax.validation.Valid;
@@ -10,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.demo.model.Account;
 
@@ -60,8 +63,31 @@ public class MyDemoController {
 		
 		return ("accountCreated");
 	} // public String performCreate (Account account) {
+		
+	@RequestMapping (value="/myForm")
+	public String myForm () {
+		
+		return ("myForm");
+	} // public String myForm () {
 	
-	
-	
+	@RequestMapping(value="/handleForm")
+	public String handleForm (@RequestParam("file") MultipartFile file) {
+		
+		try {
+			
+			if (!file.isEmpty()) {
+				
+				byte [] bytes = file.getBytes ();
+				FileOutputStream fos = new FileOutputStream ("F:\\Temp\\file");
+				fos.write(bytes);
+				fos.close();
+				System.out.println("File saved successfully");
+			}
+		} catch (Exception e) {
+			System.out.println("Error saving file. " + e.getMessage());
+		}
+		
+		return ("oprationComplete");
+	} // public String handleForm (@RequestParam("file") MultipartFile file) {
 	 
 } // public class MyDemoController {
