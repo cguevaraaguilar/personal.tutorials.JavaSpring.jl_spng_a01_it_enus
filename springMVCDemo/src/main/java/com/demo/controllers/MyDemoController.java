@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.demo.model.Account;
 
 
 @Controller
+@SessionAttributes("aNewAccount")
 public class MyDemoController {
 	
 	private String [] quotes = {
@@ -40,24 +42,40 @@ public class MyDemoController {
 	} // public String getRandomQuote (Model model) {
 	
 	@ModelAttribute
-	public void setUserDettails (@RequestParam ("userName") String userName, Model model) {
+	public void setUserDettails (@RequestParam (name = "userName", required = false) String userName, Model model) {
 		
-		model.addAttribute("userName", userName);
+		if (userName != null) {
 		
-		String userRole = "undefined";
-		
-		if (userName.equals("Carlos")) {
-			userRole = "Student";			
-		} else if (userName.equals("John")) {
-			userRole = "Teacher";
-		} else if (userName.equals("Allana")) {
-			userRole = "Dean";
-		}
-		
-		model.addAttribute("userRole", userRole);
-		
-		System.out.println("Model updated with user information.");
+			model.addAttribute("userName", userName);
+			
+			String userRole = "undefined";
+			
+			
+			if (userName.equals("Carlos")) {
+				userRole = "Student";			
+			} else if (userName.equals("John")) {
+				userRole = "Teacher";
+			} else if (userName.equals("Allana")) {
+				userRole = "Dean";
+			}
+			
+			model.addAttribute("userRole", userRole);
+			
+			System.out.println("Model updated with user information.");
+		} // if (userName != null) {
 	} // public void setUserDettails (@RequestParam ("userName") String userName, Model model) {
+	
+	@ModelAttribute
+	public void addAccountToModel (Model model) {
+		
+		System.out.println("Making sure account object is on model ");
+		
+		if (!model.containsAttribute("aNewAccount")) {
+			
+			Account a = new Account ();
+			model.addAttribute("aNewAccount", a);
+		} // if (!model.containsAttribute("aNewAccount")) {
+	} // public void addAccountToModel (Model model) {
 	
 	@RequestMapping(value="/createAccount")
 	public String createAccount (@Valid @ModelAttribute ("aNewAccount") Account account, BindingResult result) {
@@ -95,7 +113,7 @@ public class MyDemoController {
 	@RequestMapping(value="/accountCreated", method=RequestMethod.POST)
 	public String performCreate (Account account) {
 		
-		System.out.println(account.getFirstName() + " " + account.getLastName() + " " + account.getAge() + " " + account.getAddress() + " " + account.getEmail());
+		System.out.println("Account created " + account.getFirstName() + " " + account.getLastName() + " " + account.getAge() + " " + account.getAddress() + " " + account.getEmail());
 		
 		return ("accountCreated");
 	} // public String performCreate (Account account) {
