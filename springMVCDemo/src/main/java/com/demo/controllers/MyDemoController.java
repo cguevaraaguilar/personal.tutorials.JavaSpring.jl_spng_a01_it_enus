@@ -49,12 +49,28 @@ public class MyDemoController {
 		} // if (result.hasErrors()){
 		
 		System.out.println("Form validated");
-		System.out.println(account.getFirstName() + " " + account.getLastName() + " " + account.getAge() + " " + account.getAddress() + " " + account.getEmail());
+		System.out.println("Create account " + account.getFirstName() + " " + account.getLastName() + " " + account.getAge() + " " + account.getAddress() + " " + account.getEmail());
 		
 		// model.addAllAttributes(attributeValues)
 		
 		return ("accountCreated");
 	} // public String createAccount (@Valid @ModelAttribute ("aNewAccount") Account account, BindingResult result) {
+	
+	@RequestMapping(value="/doCreate")
+	public String doCreate (@ModelAttribute ("aNewAccount") Account account) {
+		
+		System.out.println("Do create " + account.getFirstName() + " " + account.getLastName() + " " + account.getAge() + " " + account.getAddress() + " " + account.getEmail());
+		
+		return ("redirect:accConfirm");
+	} // public String doCreate (@@ModelAttribute ("aNewAccount") Account account) {
+	
+	@RequestMapping(value="/accConfirm")
+	public String accountConfirmation (@ModelAttribute ("aNewAccount") Account account) {
+		
+		System.out.println("Account Confirmation " + account.getFirstName() + " " + account.getLastName() + " " + account.getAge() + " " + account.getAddress() + " " + account.getEmail());
+		
+		return ("accountConfirmed");
+	} // 
 	
 	@RequestMapping(value="/accountCreated", method=RequestMethod.POST)
 	public String performCreate (Account account) {

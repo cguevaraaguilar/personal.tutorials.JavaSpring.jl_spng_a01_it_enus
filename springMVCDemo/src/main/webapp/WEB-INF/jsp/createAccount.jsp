@@ -21,7 +21,8 @@
 <body>
 
 	<h1>Enter Account Details</h1>
-	<form:form commandName="aNewAccount" method="post" action="accountCreated.html">
+	
+	<form:form commandName="aNewAccount" method="POST" action="doCreate">
 	
 		<table>
 		
