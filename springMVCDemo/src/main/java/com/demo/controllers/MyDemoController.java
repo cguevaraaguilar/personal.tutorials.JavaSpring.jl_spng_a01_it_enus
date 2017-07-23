@@ -39,6 +39,26 @@ public class MyDemoController {
 		return ("quote");
 	} // public String getRandomQuote (Model model) {
 	
+	@ModelAttribute
+	public void setUserDettails (@RequestParam ("userName") String userName, Model model) {
+		
+		model.addAttribute("userName", userName);
+		
+		String userRole = "undefined";
+		
+		if (userName.equals("Carlos")) {
+			userRole = "Student";			
+		} else if (userName.equals("John")) {
+			userRole = "Teacher";
+		} else if (userName.equals("Allana")) {
+			userRole = "Dean";
+		}
+		
+		model.addAttribute("userRole", userRole);
+		
+		System.out.println("Model updated with user information.");
+	} // public void setUserDettails (@RequestParam ("userName") String userName, Model model) {
+	
 	@RequestMapping(value="/createAccount")
 	public String createAccount (@Valid @ModelAttribute ("aNewAccount") Account account, BindingResult result) {
 		
@@ -70,7 +90,7 @@ public class MyDemoController {
 		System.out.println("Account Confirmation " + account.getFirstName() + " " + account.getLastName() + " " + account.getAge() + " " + account.getAddress() + " " + account.getEmail());
 		
 		return ("accountConfirmed");
-	} // 
+	} // public String accountConfirmation (@ModelAttribute ("aNewAccount") Account account) {
 	
 	@RequestMapping(value="/accountCreated", method=RequestMethod.POST)
 	public String performCreate (Account account) {
