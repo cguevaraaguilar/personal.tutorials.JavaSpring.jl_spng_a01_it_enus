@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,8 +53,11 @@ public class MyDemoController {
 		return ("demoPage");
 	} // public String getCookie (@CookieValue ("myRandomCookie") String myCookie) {
 	
-	@RequestMapping(value="/getQuote", params="from", headers="X-API-KEY")
-	public String getRandomQuote (Model model) {
+	@RequestMapping(value="/getQuote", params="from")
+	public String getRandomQuote (
+			@RequestParam (name = "userNames", required = false) String userNames,
+			@RequestHeader (name ="X-API-KEY", required = false) String header,
+			Model model) {
 		int rand = new Random().nextInt(quotes.length);
 		
 		System.out.println("URL Mapped Successfully.");
@@ -61,10 +65,12 @@ public class MyDemoController {
 		String randomQuote = quotes [rand];
 		
 		model.addAttribute("randomQuote", randomQuote);
+		model.addAttribute("userNames", userNames);
 		
 		return ("quote");
 	} // public String getRandomQuote (Model model) {
 	
+	// Escucha a todos los request mapping
 	@ModelAttribute
 	public void setUserDettails (@RequestParam (name = "userName", required = false) String userName, Model model) {
 		
