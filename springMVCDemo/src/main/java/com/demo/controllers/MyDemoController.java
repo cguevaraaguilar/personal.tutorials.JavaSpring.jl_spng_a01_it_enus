@@ -52,9 +52,11 @@ public class MyDemoController {
 		return ("demoPage");
 	} // public String getCookie (@CookieValue ("myRandomCookie") String myCookie) {
 	
-	@RequestMapping(value="/getQuote")
+	@RequestMapping(value="/getQuote", params="from=Keisha")
 	public String getRandomQuote (Model model) {
 		int rand = new Random().nextInt(quotes.length);
+		
+		System.out.println("URL Mapped Successfully.");
 		
 		String randomQuote = quotes [rand];
 		
