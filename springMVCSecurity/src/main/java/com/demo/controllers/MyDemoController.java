@@ -35,5 +35,4 @@ public class MyDemoController {
 		return ("home");
 	} // public String getHome (Model model) {
 	
-	 
 } // public class MyDemoController {

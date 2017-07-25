@@ -8,12 +8,22 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<security:http auto-config="true">
-
-		<security:intercept-url pattern='/login.jsp' access="isAnonymous()" />
 	
+		<!-- Configuración de login por página .jsp 
+		<security:intercept-url pattern='/login.jsp' access="isAnonymous()" />
+		 -->
+	
+		<!-- Configuración de login por controlador -->
+		<security:intercept-url pattern='/login' access="isAnonymous()" />
+		
 		<security:intercept-url pattern="/** " access="hasRole('ROLE_USER')" />
 		
+		<!-- Configuración de login por página .jsp
 		<security:form-login login-page='/login.jsp' default-target-url="/home" />
+		 -->
+		 
+		 <!-- Configuración de login por controlador -->
+		 <security:form-login login-page='/login' default-target-url="/home" />
 		
 	</security:http>
 	
