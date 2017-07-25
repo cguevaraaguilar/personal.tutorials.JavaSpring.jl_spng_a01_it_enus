@@ -15,11 +15,12 @@
 	</security:http>
 	
 	<security:authentication-manager>
-	
-		 
-		<security:authentication-provider user-service-ref="myUserDetailService" />
-		 
-	
+	 
+		<security:authentication-provider user-service-ref="myUserDetailService" > 
+		
+			<security:password-encoder hash="md5" />
+		</security:authentication-provider>
+		
 		<!--
 		<security:authentication-provider>
 		
