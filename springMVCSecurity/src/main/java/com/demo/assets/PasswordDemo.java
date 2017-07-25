@@ -1,6 +1,7 @@
 package com.demo.assets;
 
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,5 +17,16 @@ public class PasswordDemo {
 		
 		return (encrypted);
 	} // public String getMD5Hash (String plainText) {
+	
+	public String getBcryptHash (String plainText) {
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder ();
+		
+		String encrypted = encoder.encode(plainText);
+		
+		System.out.println("Password encrypted usind Bcrypt = " + encrypted);
+		
+		return (encrypted);
+	} // public String getBcryptHash (String plainText) {
 	
 } // public class PasswordDemo {

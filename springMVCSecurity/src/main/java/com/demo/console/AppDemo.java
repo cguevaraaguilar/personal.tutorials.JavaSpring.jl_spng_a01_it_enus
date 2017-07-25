@@ -10,5 +10,7 @@ public class AppDemo {
 		PasswordDemo pwd = new PasswordDemo ();
 		
 		pwd.getMD5Hash("1234567");
+		
+		pwd.getBcryptHash("1234567");
 	} // public static void main(String[] args) {
 } // public class AppDemo {
