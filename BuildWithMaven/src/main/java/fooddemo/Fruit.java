@@ -53,5 +53,13 @@ public class Fruit {
 		
 		return lsReturn;
 	}
+	
+	public void destroyMethod () {
+		System.out.println ("The fruit bean is about to be destroyed.");
+	}
+	
+	public void initMethod () {
+		System.out.println("The fruit bean is ready to go. " + this.definition);
+	}
 
 }

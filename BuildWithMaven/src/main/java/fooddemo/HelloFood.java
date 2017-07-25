@@ -25,9 +25,16 @@ public class HelloFood {
 		Meal mySpringMeal = appContext.getBean("meal", Meal.class);
 		Meal myNewSpringMeal = appContext.getBean("newMealConstructor", Meal.class);
 		Meal newMealConstructorNamed = appContext.getBean("newMealConstructorNamed", Meal.class);
+		Meal mealAutowiredByName = appContext.getBean("mealAutowiredByName", Meal.class);
+		Meal mealAutoWiredByConstructor = appContext.getBean ("mealAutoWiredByConstructor", Meal.class);
+		
+		Meal mealOuterBean = appContext.getBean("mealOuterBean", Meal.class);
 		
 		Fruit fruitWithDefinition = new Fruit ();
 		
+		Fruit fruitCreationDestruction = appContext.getBean("fruitCreationDestruction", Fruit.class);
+		
+		Meal mealAutowired = appContext.getBean("mealAutowired", Meal.class);
 		
 		((FileSystemXmlApplicationContext) appContext).close();
 		
@@ -46,7 +53,17 @@ public class HelloFood {
 		System.out.println("New Spring meal: " + myNewSpringMeal.whatsInThisMeal());
 		System.out.println("New Spring meal named: " + newMealConstructorNamed.whatsInThisMeal());
 		
-		fruitWithDefinition.talkAboutYourDefinition();
+		System.out.println("Fruit with definition: " + fruitWithDefinition.talkAboutYourDefinition());
+		
+		System.out.println("Meal outer bean: " + mealOuterBean.whatsInThisMeal());
+		
+		System.out.println("fruitCreationDestruction " + fruitCreationDestruction.talkAboutYourDefinition());
+		
+		System.out.println("mealAutowired " + mealAutowired.whatsInThisMeal());
+		
+		System.out.println("mealAutowiredByName " + mealAutowiredByName.whatsInThisMeal());
+		
+		System.out.println("mealAutoWiredByConstructor " + mealAutoWiredByConstructor.whatsInThisMeal());
 	}
 
 }

@@ -4,7 +4,7 @@
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="fruit" class="fooddemo.Fruit" />
+	
 	<bean id="fruitWithName" class="fooddemo.Fruit">
 		<constructor-arg index="0" value="Apple"/>
 	</bean>
@@ -27,7 +27,7 @@
 		</property>
 	</bean>
 	
-	<bean id="vegetable" class="fooddemo.Vegetable" > </bean>
+	
 	
 	<bean id="vegetableWithName" class="fooddemo.Vegetable" >
 		<property name="myName" value="Brocolli" />
@@ -35,14 +35,15 @@
 	
 	<bean id="vegUsingPNamespace" class="fooddemo.Vegetable" p:myName="Squash" />
 	
-	<bean id="dairy" class="fooddemo.Dairy">
+	<bean id="fruit" class="fooddemo.Fruit" primary="true" />
+	<bean id="dairy" class="fooddemo.Dairy" primary="true" >
 	</bean>
-	
-	<bean id="grain" class="fooddemo.Grain">
+	<bean id="grain" class="fooddemo.Grain" primary="true" >
 	</bean>
-	
-	<bean id="meat" class="fooddemo.Meat">
+	<bean id="meat" class="fooddemo.Meat" primary="true" >
 	</bean>
+	<bean id="vegetable" class="fooddemo.Vegetable" primary="true" > </bean>
+	<!-- Necesario para poder hacer el autowire por type  -->
 	
 	<bean id="meal" class="fooddemo.Meal">
 		<property name="fruit" ref="fruit" />
@@ -51,6 +52,10 @@
 		<property name="meat" ref="meat" />
 		<property name="veg" ref="vegetable" />
 	</bean>
+	
+	
+	
+	
 	
 	<bean id="newMealConstructor" class="fooddemo.Meal">
 		<constructor-arg index="0" ref="fruit" />
@@ -67,6 +72,29 @@
 		<constructor-arg name="m" ref="meat" />
 		<constructor-arg name="v" ref="vegetable" />
 	</bean>
+	
+	<bean id="mealOuterBean" class="fooddemo.Meal">
+		<property name="fruit">
+			<bean id="appleInnerBean" class="fooddemo.Apple">
+				<property name="name" value="apple" />
+				<property name="description" value="I am an apple. I am typically red or green with crisp flesh" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="fruitCreationDestruction" class="fooddemo.Fruit"
+		init-method="initMethod"
+		destroy-method="destroyMethod">
+		<property name="definition" value="Hi, I am a fruit."/> 
+	</bean>
+	
+	<bean id="mealAutowired" class="fooddemo.Meal" autowire="byType" />
+	
+	<bean id="veg" class="fooddemo.Vegetable" />
+	
+	<bean id="mealAutowiredByName" class="fooddemo.Meal" autowire="byName" />
 
+	<bean id="mealAutoWiredByConstructor" class="fooddemo.Meal" autowire="constructor" />
+	
 </beans>
  
