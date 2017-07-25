@@ -29,5 +29,15 @@ public class LoginController {
 		
 		return ("login");
 	} // public String loginFail (Model model) {
+	
+	@RequestMapping (value="/logout", method=RequestMethod.GET)
+	public String logout (Model model) {
+		
+		System.out.println("Logout hadler running");
+		
+		model.addAttribute("logoutMessage", "Thanks for using the app. See you next time.");
+		
+		return ("logout");
+	} // public String logout (Model model) {
 
 } // public class LoginController {

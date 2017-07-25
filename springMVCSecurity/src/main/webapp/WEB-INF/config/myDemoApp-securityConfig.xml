@@ -15,8 +15,10 @@
 	
 		<!-- Configuración de login por controlador -->
 		<!-- Configuración de error en login -->
+		<!-- Configuración de error en logout -->
 		<security:intercept-url pattern='/login' access="isAnonymous()" />
 		<security:intercept-url pattern='/loginFail' access="isAnonymous()" />
+		<security:intercept-url pattern='/logout' access="isAnonymous()" />
 		
 		<security:intercept-url pattern="/** " access="hasRole('ROLE_USER')" />
 		
@@ -29,8 +31,11 @@
 		 <security:form-login 
 		 	login-page='/login' 
 		 	default-target-url="/home"
-		 	 authentication-failure-url="/loginFail"
+		 	authentication-failure-url="/loginFail"
 	 	/>
+	 	
+	 	<!-- Logout -->
+	 	<security:logout logout-success-url="/logout" />
 		
 	</security:http>
 	
