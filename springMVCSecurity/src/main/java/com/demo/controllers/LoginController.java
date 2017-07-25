@@ -19,5 +19,15 @@ public class LoginController {
 		
 		return ("login");
 	} // public String login(Model model) {
+	
+	@RequestMapping (value="/loginFail", method=RequestMethod.GET)
+	public String loginFail (Model model) {
+		
+		System.out.println ("Login fail handler running.");
+		
+		model.addAttribute("errorMessage", "Opps, there was a problem loggin in.");
+		
+		return ("login");
+	} // public String loginFail (Model model) {
 
 } // public class LoginController {
