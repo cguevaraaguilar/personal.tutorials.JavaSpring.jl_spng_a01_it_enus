@@ -7,11 +7,14 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<security:http auto-config="true" >
+	<security:http auto-config="true">
+
+		<security:intercept-url pattern='/login.jsp' access="isAnonymous()" />
 	
-		<security:intercept-url pattern="/** " access="hasRole('ROLE_USER')"/>
+		<security:intercept-url pattern="/** " access="hasRole('ROLE_USER')" />
 		
-		<security:http-basic />
+		<security:form-login login-page='/login.jsp' default-target-url="/home" />
+		
 	</security:http>
 	
 	<security:authentication-manager>
