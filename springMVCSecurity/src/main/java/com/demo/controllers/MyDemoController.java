@@ -2,6 +2,7 @@ package com.demo.controllers;
 
 import java.util.Random;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ public class MyDemoController {
 
 	// http://localhost:8080/springMVCDemo/getQuote.html
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value="/getQuote")
 	public String getRandomQuote (Model model) {
 		int rand = new Random().nextInt(quotes.length);

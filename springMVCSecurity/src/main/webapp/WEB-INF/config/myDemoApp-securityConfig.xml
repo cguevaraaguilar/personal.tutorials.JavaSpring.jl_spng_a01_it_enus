@@ -16,9 +16,9 @@
 		<!-- Configuración de login por controlador -->
 		<!-- Configuración de error en login -->
 		<!-- Configuración de error en logout -->
-		<security:intercept-url pattern='/login' access="isAnonymous()" />
-		<security:intercept-url pattern='/loginFail' access="isAnonymous()" />
-		<security:intercept-url pattern='/logout' access="isAnonymous()" />
+		<security:intercept-url pattern='/login' access="permitAll" />
+		<security:intercept-url pattern='/loginFail' access="permitAll" />
+		<security:intercept-url pattern='/logout' access="permitAll" />
 		
 		<security:intercept-url pattern="/** " access="hasRole('ROLE_USER')" />
 		
