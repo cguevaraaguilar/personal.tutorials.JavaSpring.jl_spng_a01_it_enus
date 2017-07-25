@@ -30,5 +30,10 @@ public class MyDemoController {
 		return ("quote");
 	} // public String getRandomQuote (Model model) {
 	
+	@RequestMapping(value="/home")
+	public String getHome (Model model) {
+		return ("home");
+	} // public String getHome (Model model) {
+	
 	 
 } // public class MyDemoController {
