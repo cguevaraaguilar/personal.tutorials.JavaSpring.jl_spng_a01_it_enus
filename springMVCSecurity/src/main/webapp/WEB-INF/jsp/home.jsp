@@ -11,7 +11,9 @@
 </head>
 <body>
 
-	<a href="addFood">Add a food to the list</a>
+	<sec:authorize access="hasRole('ROLE_ACCOUNTS')">
+		<a href="addFood">Add a food to the list</a>
+	</sec:authorize>
 	
 	<h1>All Foods</h1>
 	
